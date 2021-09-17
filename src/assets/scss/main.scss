@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "./normalize.scss";
+@import "./variables.scss";
+@import "./mixins.scss";
+@import "./responsive.scss";
+
+.header {
+  background-color: $colorRed;
+  &-title {
+    font-weight: 600;
+    font-family: $inter;
+    letter-spacing: 0.05rem;
+  }
+}
+.main {
+  &-wrapper {
+    display: grid;
+    grid-template-columns: 3.5555555556rem 1fr 3.5555555556rem;
+  }
+  & .glider-prev,
+  .glider-next {
+    border-color: $sideBorderColor !important;
+    color: $colorRed !important;
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+  & .content {
+    &-list {
+      display: flex;
+      &__item {
+        width: 100%;
+        height: 25rem !important;
+        border-right: 1px solid;
+        border-color: #e2e4e6;
+        padding: 5px 10px;
+      }
+    }
+    & .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      &__title {
+        color: #000;
+        font-size: 28px;
+        font-weight: 800;
+        font-family: $inter;
+      }
+      &__date {
+        color: #000;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: $inter;
+      }
+    }
+  }
+  & .todo {
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 22px,
+      ($sideBorderColor) 22px,
+      ($sideBorderColor) 23.23px,
+      transparent 23.23px,
+      transparent 25px
+    );
+    padding-bottom: 2.6411111111rem;
+    height: 100%;
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      position: relative;
+      // border-bottom: 1px solid;
+      border-color: #e2e4e6;
+      cursor: grab;
+      & .todo-buttons {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        height: 100%;
+      }
+      &.is-completed .todo-content__text {
+        color: #b6b6b6;
+        text-decoration: line-through;
+      }
+      &:hover .todo-content__text {
+        overflow: visible;
+        text-overflow: unset;
+        padding-right: 2.222222rem;
+        white-space: initial;
+        background-color: $colorHover;
+      }
+      &:hover .todo-buttons {
+        opacity: 1;
+        z-index: 10;
+      }
+      &.is-editing .todo-content__text {
+        display: none;
+      }
+      &.is-editing .main__input {
+        display: block !important;
+      }
+      &:not(.is-completed) .todo-buttons__button_delete {
+        display: none;
+      }
+      &.is-completed .todo-buttons__button_edit {
+        display: none;
+      }
+      &.is-editing .todo-buttons {
+        opacity: 0;
+      }
+    }
+    &-content {
+      &__text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        user-select: none;
+        white-space: nowrap;
+        padding: 0.16rem 0;
+      }
+    }
+    &-buttons {
+      color: $colorRed;
+    }
+  }
+}
